@@ -1,3 +1,4 @@
+using Discord.WebSocket;
 using James;
 
 internal class Program
@@ -9,11 +10,12 @@ internal class Program
             {
                 config.AddJsonFile($"appsettings.{ctx.HostingEnvironment.EnvironmentName}.local.json", true, true);
             })
-            .ConfigureServices(services => { services.AddHostedService<Worker>(); })
+            .ConfigureServices(services =>
+            {
+                services.AddHostedService<Worker>();
+                services.AddSingleton<DiscordSocketClient>();
+            })
             .Build();
-
         host.Run();
     }
 }
-
-
