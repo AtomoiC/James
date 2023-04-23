@@ -16,3 +16,5 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "James.dll"]
+
+ENV Discord__Bot__Token=""

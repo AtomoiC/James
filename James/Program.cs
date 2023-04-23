@@ -1,14 +1,18 @@
 using Discord.WebSocket;
-using James;
 
-internal class Program
+namespace James;
+
+static class Program
 {
     public static void Main(string[] args)
     {
-        IHost host = Host.CreateDefaultBuilder(args)
+        var host = Host.CreateDefaultBuilder(args)
             .ConfigureAppConfiguration((ctx, config) =>
             {
-                config.AddJsonFile($"appsettings.{ctx.HostingEnvironment.EnvironmentName}.local.json", true, true);
+                config
+                    .AddJsonFile("appsettings.local.json", true, true)
+                    .AddJsonFile($"appsettings.{ctx.HostingEnvironment.EnvironmentName}.local.json", true, true)
+                    .AddEnvironmentVariables();
             })
             .ConfigureServices(services =>
             {
