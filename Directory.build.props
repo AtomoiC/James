@@ -1,0 +1,37 @@
+<Project>
+    <PropertyGroup Label="Static Values">
+        <AssemblyPrefix>hs.James</AssemblyPrefix>
+    </PropertyGroup>
+
+    <PropertyGroup Label="Project-Configuration">
+        <RootNamespace>James.$(MSBuildProjectName.Replace("James", "").Replace(".Shared", ""))</RootNamespace>
+
+        <AssemblyName>$(AssemblyPrefix).$(MSBuildProjectName)</AssemblyName>
+        <AssemblyName>$(AssemblyName.Replace("James.James","James"))</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Label="C#-Language-Settings">
+        <ImplicitUsings>enable</ImplicitUsings>
+        <LangVersion>default</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup Label="Test-Project-Configuration" Condition="$(ProjectName.EndsWith('.Tests'))">
+        <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+        <PackageReference Include="xunit" Version="2.4.1" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="3.1.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup Label="Internals visible to *.Tests">
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>$(AssemblyName).Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+</Project>

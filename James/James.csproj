@@ -2,10 +2,9 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
         <UserSecretsId>dotnet-James-7EA42B3A-39E3-4D55-A828-6A068845FB27</UserSecretsId>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+<!--        <RootNamespace>James</RootNamespace>-->
     </PropertyGroup>
 
     <ItemGroup>
@@ -17,5 +16,9 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\James.Core\James.Core.csproj" />
     </ItemGroup>
 </Project>

@@ -16,8 +16,14 @@ static class Program
             })
             .ConfigureServices(services =>
             {
+                // Build Services
                 services.AddHostedService<Worker>();
                 services.AddSingleton<DiscordSocketClient>();
+                services.RegisterServicesByConvention();
+
+                // Configure Services
+                using var scope = services.BuildServiceProvider().CreateScope();
+                scope.ServiceProvider.ConfigureStartupServices();
             })
             .Build();
         host.Run();
